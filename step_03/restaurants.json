@@ -1,0 +1,283 @@
+[
+   {
+      "restaurantName":"Bronco",
+      "address":"39 Rue des Petites Écuries, 75010 Paris",
+      "lat":48.8737815,
+      "long":2.3501649,
+      "ratings":[
+         {
+            "stars":4,
+            "userName":"Hector T.",
+            "comment":"Un excellent restaurant, j'y reviendrai ! Par contre il vaut mieux aimer la viande."
+         },
+         {
+            "stars":5,
+            "userName":"Simone G.",
+            "comment":"Tout simplement mon restaurant préféré !"
+         }
+      ]
+   },
+
+   {
+      "restaurantName":"Babalou",
+      "address":"4 Rue Lamarck, 75018 Paris",
+      "lat":48.8865035,
+      "long":2.3442197,
+      "ratings":[
+         {
+            "stars":5,
+            "userName":"John P.",
+            "comment":"Une minuscule pizzeria délicieuse cachée juste à côté du Sacré choeur !"
+         },
+
+         {
+            "stars":3,
+            "userName":"Anaïs R.",
+            "comment":"J'ai trouvé ça correct, sans plus"
+         }
+      ]
+   },
+
+   {
+      "restaurantName":"Le Mahraja",
+      "address":"43 Boulevard Amiral de Kerguélen, 29000 Quimper",
+      "lat":47.995308,
+      "long":-4.100416,
+      "ratings":[
+         {
+            "stars":5,
+            "userName":"Marie-Christine P.",
+            "comment":"Fantastique ! Une carte qui fera bondir vos papilles. Le décor vous fera également voyager !"
+         },
+
+         {
+            "stars":4,
+            "userName":"Etienne R.",
+            "comment":"Un bon restaurant indien sur les quais de Quimper ! Service sympa et rapide. Les plats sont à la hauteur du service. Je recommande !"
+         }
+      ]
+   },
+
+   {
+      "restaurantName":"Sherlock Holmes",
+      "address":"14 Rue Treuz, 29000 Quimper",
+      "lat":47.996447,
+      "long":-4.104367,
+      "ratings":[
+         {
+            "stars":5,
+            "userName":"Valentin D.",
+            "comment":"Des burgers en veux-tu en voilà ! Délicieux à tout point de vue !"
+         },
+
+         {
+            "stars":5,
+            "userName":"Caroline Q.",
+            "comment":"Le temple du burger végé. J'en redemande ! Pensez à réserver !"
+         }
+      ]
+   },
+
+   {
+      "restaurantName":"L'effet Papillon",
+      "address":"22 Rue de Douarnenez, 29000 Quimper",
+      "lat":47.997467,
+      "long":-4.109700,
+      "ratings":[
+         {
+            "stars":4,
+            "userName":"Suzanne A.",
+            "comment":"Chouette endroit ! On y mange bien et c'est très chaleureux !"
+         },
+
+         {
+            "stars":5,
+            "userName":"Jean-Michel B.",
+            "comment":"L'effet Papillon, c'est un peu mon QG. Tant pour la nourriture que pour tout ce qui y est organisé !"
+         }
+      ]
+   },
+
+   {
+      "restaurantName":"Le Crabe Marteau",
+      "address":"8 Quai Douane, 29200 Brest",
+      "lat":48.381829,
+      "long":-4.487480,
+      "ratings":[
+         {
+            "stars":3,
+            "userName":"Morgane A.",
+            "comment":"Atypique, produits frais mais addition salée."
+         },
+
+         {
+            "stars":4,
+            "userName":"Sébastien F.",
+            "comment":"Concept original et lieu hyper convivial ! Tarif élevé cependant !"
+         }
+      ]
+   },
+
+   {
+      "restaurantName":"ROADSIDE",
+      "address":"23 Place de la Liberté, 29200 Brest",
+      "lat":48.390241,
+      "long":-4.485597,
+      "ratings":[
+         {
+            "stars":3,
+            "userName":"Jocelyne V.",
+            "comment":"Adepte du diner US, allez-y les yeux fermés !"
+         },
+
+         {
+            "stars":3,
+            "userName":"Raymond T.",
+            "comment":"C'est bon, c'est gras!"
+         }
+      ]
+   },
+
+   {
+      "restaurantName":"Le Tour Du Monde",
+      "address":"Port de Plaisance, 29200 Brest",
+      "lat":48.392874,
+      "long":-4.433547,
+      "ratings":[
+         {
+            "stars":5,
+            "userName":"Nathalie H.",
+            "comment":"Déco géniale, moules frites et fish and chips fraîches, vue sur rade incroyable"
+         },
+
+         {
+            "stars":3,
+            "userName":"François R.",
+            "comment":"Endroit très sympa.pour boire un verre ou manger sur le pouce. Restauration légère avec carte simple : sandwiches ou moules. Ce n'est pas cher, l'accueil est sympa. Entre amis, c'est bien, mais pas pour un repas d'affaire."
+         }
+      ]
+   },
+
+   {
+      "restaurantName":"Les Chardons Bleus",
+      "address":"82 Rue de l'Europe, 29840 Porspoder",
+      "lat":48.518890,
+      "long":-4.760993,
+      "ratings":[
+         {
+            "stars":5,
+            "userName":"Antoine K.",
+            "comment":"Très bonne crêperie juste un régal."
+         },
+
+         {
+            "stars":5,
+            "userName":"François R.",
+            "comment":"Les galettes sont succulentes et le service est parfait. What else ? "
+         }
+      ]
+   },
+
+   {
+      "restaurantName":"Le Chenal",
+      "address":"13 Rue du Port, 29840 Porspoder",
+      "lat":48.484516,
+      "long":-4.771326,
+      "ratings":[
+         {
+            "stars":5,
+            "userName":"Hervé V.",
+            "comment":"Un petit resto/bar.librairie très charmant ! Ne passez pas à côté si vous êtes de passage dans le coin!!!"
+         },
+
+         {
+            "stars":4,
+            "userName":"Josephine A.",
+            "comment":"C'est bon, mais c'est un peu trop cher pour ce qu'il y a dans l'assiette."
+         }
+      ]
+   },
+
+   {
+      "restaurantName":"O'Porsmeur",
+      "address":"82 Rue du Port, 29840 Porspoder",
+      "lat":48.482780,
+      "long":-4.768180,
+      "ratings":[
+         {
+            "stars":4,
+            "userName":"Stéphanie C.",
+            "comment":"Un Fish ans chips excellent dans un cadre exceptionnel en face de la Mer dans une ambiance très sympathique. Il faut juste faire attention aux dates des concerts, la musique étant assez forte on ne s'entend pas parler au restaurant."
+         },
+
+         {
+            "stars":4,
+            "userName":"Josephine A.",
+            "comment":"Terrasse bien orientée pour profiter du coucher de soleil à l’apéro. Nous n’avons pas testé le restaurant."
+         }
+      ]
+   },
+
+   {
+      "restaurantName":"La Cave à Pépé",
+      "address":"3 rue de la Ville en Pierre, 44000, Nantes",
+      "lat":47.225442,
+      "long":-1.524046,
+      "ratings":[
+         {
+            "stars":4,
+            "userName":"Johann F.",
+            "comment":"Une belle surprise ! Un bar restaurant très convivial !"
+         },
+
+         {
+            "stars":4,
+            "userName":"Viviane A.",
+            "comment":"L'accueil y est très chaleureux, les pizzas et les desserts sont vraiment délicieux. Une très bonne adresse dans le quartier."
+         }
+      ]
+
+   },
+
+   {
+      "restaurantName":"Grâtiné Ô Four",
+      "address":"68, Boulevard Ernest Dalby, 44000, Nantes",
+      "lat":47.223909,
+      "long":-1.530118,
+      "ratings":[
+         {
+            "stars":5,
+            "userName":"Max C.",
+            "comment":"C'est bon et l'accueil est sympa. Je recommande."
+         },
+
+         {
+            "stars":3,
+            "userName":"Sophie D.",
+            "comment":"Dommage que les frites fussent un peu molles. Les tacos valent le détour en revanche !"
+         }
+      ]
+
+   },
+
+   {
+      "restaurantName":"L'Abelia",
+      "address":"125, Boulevard des Poilus, 44300, Nantes",
+      "lat":47.233074,
+      "long":-1.532986,
+      "ratings":[
+         {
+            "stars":5,
+            "userName":"Jean T.",
+            "comment":"Le lieu est très beau. La cuisine est de très bonne qualité. Une des meilleures tables nantaises."
+         },
+
+         {
+            "stars":5,
+            "userName":"Philomène V.",
+            "comment":"Fin, subtil, original. Nous y retournons dès que nous pouvons, un vraiment moment de plaisir à chaque fois ! Merci !"
+         }
+      ]
+
+   }
+]
