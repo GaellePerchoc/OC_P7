@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html data-framework="javascript">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400" rel="stylesheet">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+		
+		<!-- Slider -->
+		<link rel="stylesheet" href="lib/nouislider/nouislider.min.css">
+		
+		<!-- Modal -->
+		<link rel="stylesheet" href="lib/alertify/alertify.min.css" />
+		<link rel="stylesheet" href="lib/alertify/default.min.css" />
+		
+		<!-- Custom style -->
+		<link rel="stylesheet" href="style.css">
+		
+		<title>Il était une table</title>
+	</head>
+
+	<body>
+		<!-- Header -->
+		<header>
+			<h1>Il était une table</h1>
+		</header>
+
+		<!-- Navigation -->
+		<nav>
+			<div class="menu">
+				<div class="menu-title">Filtre</div>
+				<div id="filter" class="submenu hide">
+					<p>Filtrer par note moyenne : </p>
+					<div class="noUiSlider-container">
+						<div id="slider"></div>
+					</div>
+					<ul class="slider-labels">
+						<li class="active" id="value_00">0</li>
+						<li id="value_01">1</li>
+				    	<li id="value_02">2</li>
+						<li id="value_03">3</li>
+						<li id="value_04">4</li>
+						<li class="active" id="value_05">5</li>
+					</ul>			
+				</div>
+			</div>
+		</nav>
+
+		<!-- Content -->
+		<div id="content">
+
+			<section id="map">
+			</section>
+
+			<section id="list">
+			</section>
+
+		</div>
+
+		<!-- Scroll Button -->
+		<div id="scroll" class="down">
+			<div><i class="fas fa-angle-double-down"></i></div>
+		</div>
+
+		<!-- Scripts -->
+		<script src="lib/alertify/alertify.min.js"></script>
+		<script src="lib/nouislider/nouislider.min.js"></script>
+		<script src="lib/wnumb/wNumb.js"></script>
+		
+		<script src="https://maps.googleapis.com/maps/api/js?key=API_KEY"></script>
+
+		<script src="js/slider.js"></script>
+		<script src="js/model.js"></script>
+		<script src="js/map.js"></script>
+		<script src="js/template.js"></script>
+		<script src="js/view.js"></script>
+		<script src="js/controller.js"></script>
+		<script src="js/app.js"></script>
+	</body>
+</html>
