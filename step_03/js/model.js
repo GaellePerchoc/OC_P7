@@ -1,6 +1,16 @@
+/** @namespace */ 
 (function(window){
 	'use strict';
 
+	/** 
+	 * Creates a new Model instance and hooks up the storage.
+	 * 
+	 * @namespace 
+	 * @alias window.app.Model
+	 * @class
+	 * 
+	 * @param {object} storage - 
+	 */
 	function Model (storage){
 		this.storage = storage;
 		this.restaurants;
@@ -9,8 +19,8 @@
 	/**
 	 * Create new restaurants
 	 *
-	 * @param {object} [data] The data to create
-	 * @param {function} [callback] The function to fire after the restaurant is created
+	 * @param {object} data - The data to create
+	 * @param {function} callback - The function to fire after the restaurant is created
 	 */
 	Model.prototype.create = function(data, callback) {
 		if(data.type == "add"){
@@ -24,10 +34,10 @@
 	/**
 	 * Find restaurants depending of the type of the query
 	 *
-	 * @param {string|number|object} [query]
+	 * @param {string|number|object} query -
 	 * If the query is the string or number, the model returns an unique restaurant
 	 * If the query is an object, the model returns an array of restaurants 
-	 * @param {function} [callback] The function to fire after the restaurant of the array of restaurants have been found
+	 * @param {function} callback - The function to fire after the restaurant of the array of restaurants have been found
 	 */
 	Model.prototype.read = function(query, callback) {
 		const self = this;
@@ -62,9 +72,9 @@
 	/**
 	 * Update an existing restaurant
 	 *
-	 * @param {string | number} [id] The restaurant's id
-	 * @param {boolean | object} [data] The restaurant's properties to update
-	 * @param {function} [callback] The function to fire after the restaurant has been updated
+	 * @param {string | number} id - The restaurant's id
+	 * @param {boolean | object} data - The restaurant's properties to update
+	 * @param {function} callback - The function to fire after the restaurant has been updated
 	 */
 	Model.prototype.update = function(id, data, callback) {
 		const self = this;
@@ -77,14 +87,14 @@
 	 * Request the Street View Image Metadata of a restaurant and according to the response, 
 	 * update the restaurant to inform whether a Street View Static Image exists for the specific place
 	 *
-	 * @param {object} [restaurant] The restaurant's object
-	 * @param {function} [callback] The function to fire after the model has been updated
+	 * @param {object} restaurant - The restaurant's object
+	 * @param {function} callback - The function to fire after the model has been updated
 	 */
 	Model.prototype._getPicture = function(restaurant, callback){
 		let request = 
 			  "https://maps.googleapis.com/maps/api/streetview/metadata?"
 			+ "&location=" + restaurant.lat + "," + restaurant.long
-			+ "&key=API_KEY";
+			+ "&key=YOUR_API_KEY";
 
 		const req = new XMLHttpRequest();
 		const self = this;

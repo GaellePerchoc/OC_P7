@@ -1,6 +1,18 @@
+/** @namespace */
 (function(window){
 	'use strict';
 
+	/** 
+	 * Takes a model, a view  and a map and acts as the controller between them.
+	 * 
+	 * @namespace
+	 * @alias window.app.Controller
+	 * @class
+	 *
+	 * @param {object} model - 
+	 * @param {object} view - 
+	 * @param {object} map - 
+	 */
 	function Controller (model, view, map){
 		this.model = model;
 		this.view = view;
@@ -85,8 +97,8 @@
 	/**
 	 * Update the list of the restaurant according to the new values of the filter
 	 *
-	 * @param {number} [min] The min value of the filter
-	 * @param {number} [max] The max value of the filter
+	 * @param {number} min - The min value of the filter
+	 * @param {number} max - The max value of the filter
 	 */
 	Controller.prototype.updateRestaurants = function(min, max){
 		let query = {
@@ -136,8 +148,8 @@
 	/**
 	 * Show the next restaurants from the current list
 	 *
-	 * @param {number} [index] The index in the list from which start to show
-	 * @param {array} [sliderValues] The values min and max of the slider
+	 * @param {number} index - The index in the list from which start to show
+	 * @param {array} sliderValues - The values min and max of the slider
 	 */
 	Controller.prototype.showNextRestaurants = function(index, sliderValues){
 		let query = {
@@ -157,8 +169,8 @@
 	/**
 	 * Show the previous restaurants from the current list
 	 *
-	 * @param {number} [index] The index in the list from which start to show
-	 * @param {array} [sliderValues] The values min and max of the slider
+	 * @param {number} index - The index in the list from which start to show
+	 * @param {array} sliderValues - The values min and max of the slider
 	 */	
 	Controller.prototype.showPreviousRestaurants = function(index, sliderValues){
 		let query = {
@@ -178,7 +190,7 @@
 	/**
 	 * Show the reviews of a restaurant
 	 *
-	 * @param {string|number} [id] The restaurant's id
+	 * @param {string|number} id - The restaurant's id
 	 */
 	Controller.prototype.showReviews = function(id){
 		id = id.toString();
@@ -202,8 +214,8 @@
 	/**
 	 * Add a new restaurant
 	 *
-	 * @param {object} [restaurant] The restaurant to create
-	 * @param {number} [index] The index to insert the restaurant in the temporary list of restaurants
+	 * @param {object} restaurant - The restaurant to create
+	 * @param {number} index - The index to insert the restaurant in the temporary list of restaurants
 	 */
 	Controller.prototype.addRestaurant = function(restaurant, index){
 		const self = this;
@@ -215,8 +227,8 @@
 	/**
 	 * Add a new review
 	 *
-	 * @param {string|number} [id] The restaurant's id to which add a new review
-	 * @param {object} [review] The review to add
+	 * @param {string|number} id - The restaurant's id to which add a new review
+	 * @param {object} review - The review to add
 	 */
 	Controller.prototype.addReview = function(id, review){
 		const self = this;
@@ -241,8 +253,8 @@
 	/**
 	 * Bind the event to get the picture to the render of this picture
 	 *
-	 * @param {string} [name] The restaurant's object
-	 * @param {string} [picture] The callback to fire after the model is created
+	 * @param {string} name - The restaurant's object
+	 * @param {string} picture - The callback to fire after the model is created
 	 */
 	Controller.prototype._bindShowPicture = function(name, picture){
 		const self = this;
@@ -258,7 +270,7 @@
 	/**
 	 * Bind the event to add a new review
 	 *
-	 * @param {string|number} [id] The restaurant's id
+	 * @param {string|number} id - The restaurant's id
 	 */
 	Controller.prototype._bindAddReview = function(id){
 		const self = this;
@@ -274,8 +286,8 @@
 	/**
 	 * Show cards and markers of the restaurants
 	 *
-	 * @param {number} [index] The index from which to start
-	 * @param {array} [list] The list of restaurants to show
+	 * @param {number} index - The index from which to start
+	 * @param {array} list - The list of restaurants to show
 	 */
 	Controller.prototype._show = function(index, list){
 		this.view.render("resetList");
@@ -327,8 +339,8 @@
 	/**
 	 * Show the restaurant's reviews
 	 *
-	 * @param {object} [restaurant] The restaurant
-	 * @param {string} [id] The restaurant's id
+	 * @param {object} restaurant -The restaurant
+	 * @param {string} id - The restaurant's id
 	 */
 	Controller.prototype._reviews = function(restaurant, id){
 		this.view.render("showReviews", restaurant);
@@ -338,7 +350,7 @@
 				 "https://maps.googleapis.com/maps/api/streetview?"
 				+ "size=600x400"
 				+ "&location=" + restaurant.lat + "," + restaurant.long
-				+ "&key=API_KEY";
+				+ "&key=YOUR_API_KEY";
 			this._bindShowPicture(restaurant.restaurantName, picture);
 		}
 

@@ -1,6 +1,17 @@
+/** @namespace */ 
 (function(window){
 	'use strict';
 
+	/** 
+	 * Creates a new View instance and hooks up the template and the slider.
+	 * 
+	 * @namespace
+	 * @alias window.app.View
+	 * @class
+	 *
+	 * @param {object} template -
+	 * @param {object} slider - 
+	 */
 	function View (template, slider) {
 		this.template = template;
 		this.slider = slider;
@@ -22,9 +33,9 @@
 	/**
 	 * Bind each event which could happen into the view with the corresponding handler
 	 * 
-	 * @param {string} [event] 
-	 * @param {function} [handler] 
-	 * @param {string|number} [parameter] Optional
+	 * @param {string} event 
+	 * @param {function} handler
+	 * @param {string|number} [parameter]
 	 */
 	View.prototype.bind = function(event, handler, parameter){
 		switch(event){
@@ -113,7 +124,7 @@
 	/**
 	 * Scroll to a specific location on the page
 	 *
-	 * @param {number} [top] The top property
+	 * @param {number} top - The top property
 	 */
 	View.prototype._scrollTo = function(top) {
 		window.scroll({
@@ -145,7 +156,7 @@
 	/**
 	 * Set the event to get the reviews of a restaurant
 	 *
-	 * @param {function} [handler] The function to fire after the event occurs
+	 * @param {function} handler - The function to fire after the event occurs
 	 */
 	View.prototype._getReviews = function(handler){
 		const self = this;
@@ -159,7 +170,7 @@
 	/**
 	 * Set the event to get the picture of a restaurant
 	 * 
-	 * @param {function} [handler] The function to fire after the event occurs
+	 * @param {function} handler - The function to fire after the event occurs
 	 */
 	View.prototype._getPicture = function(handler){
 		let image = document.querySelector('#picture');
@@ -171,7 +182,7 @@
 	/**
 	 * Set the event that occurs when mouse is over a card
 	 * 
-	 * @param {function} [handler] The function to fire after the event occurs 
+	 * @param {function} handler - The function to fire after the event occurs 
 	 */
 	View.prototype._mouseOverCard = function(handler){
 		const self = this;
@@ -186,7 +197,8 @@
 	/**
 	 * Set the event that occurs when mouse leave a card
 	 * 
-	 * @param {function} [handler] The function to fire after the event occurs
+	 * @param {function} handler - The function to fire after the event occurs
+	 * @param {string | number} id - The id's of the restaurant card
 	 */
 	View.prototype._mouseLeaveCard = function(handler, id){
 		const self = this;
@@ -202,8 +214,8 @@
 	/**
 	 * Set the event to enter or cancel the mode to add a new restaurant
 	 * 
-	 * @param {function} [on] The function to fire to enter into the mode to add a new restaurant after the event occurs
-	 * @param {function} [off] The function to fire to cancel the mode to add a new restaurant after the event occurs
+	 * @param {function} on - The function to fire to enter into the mode to add a new restaurant after the event occurs
+	 * @param {function} off - The function to fire to cancel the mode to add a new restaurant after the event occurs
 	 */
 	View.prototype._restaurantAddMode = function(on, off){
 		const self = this;
@@ -226,7 +238,7 @@
 	/**
 	 * Set the event to confirm the add of a new restaurant
 	 *
-	 * @param {function} [handler] The function to fire to confirm the add of a new restaurant after the event occurs
+	 * @param {function} handler - The function to fire to confirm the add of a new restaurant after the event occurs
 	 */
 	View.prototype._addRestaurantDone = function(handler){
 		let confirm = document.querySelector('.addRestaurant .confirm');
@@ -274,7 +286,7 @@
 	/**
 	 * Set the event to enter into the mode to add a new review
 	 * 
-	 * @param {function} [handler] The function to fire to enter into the mode after the event occurs
+	 * @param {function} handler - The function to fire to enter into the mode after the event occurs
 	 */
 	View.prototype._reviewAddMode = function(handler){
 		let addReview = document.querySelector('#addReview');
@@ -287,7 +299,7 @@
 	/**
 	 * Set the event to confirm the add of a new review
 	 * 
-	 * @param {function} [handler] The function to fire to confirme the add of a new review after the event occurs
+	 * @param {function} handler - The function to fire to confirme the add of a new review after the event occurs
 	 */
 	View.prototype._addReviewDone = function(handler){
 		const self = this;
@@ -320,7 +332,6 @@
 	 * Set the event to cancel the add of a new review
 	 * 
 	 */
-	 
 	View.prototype._addReviewCancel = function(){
 		let cancel = document.querySelector('.addReview .cancel');
 		cancel.addEventListener("click", function(){
@@ -332,9 +343,9 @@
 	/**
 	 * Highligh empty required inputs into the form to add a new review
 	 * 
-	 * @param {element} [userName] Element which hosts the username of the review
-	 * @param {element} [comment] Element which hosts the new comment
-	 * @param {number | undefined} [star] The rating of the new review if it has been defined
+	 * @param {element} userName -  Element which hosts the username of the review
+	 * @param {element} comment - Element which hosts the new comment
+	 * @param {number | undefined} star - The rating of the new review if it has been defined
 	 */
 	View.prototype._addReviewFormControl = function(userName, comment, star){
 		if(!userName.value){
@@ -407,7 +418,7 @@
 	/**
 	 * Set the event to get the next restaurants
 	 * 
-	 * @param {function} [handler] The function to fire after the event occurs
+	 * @param {function} handler - The function to fire after the event occurs
 	 */
 	View.prototype._nextRestaurants = function(handler){
 		const self = this;
@@ -421,7 +432,7 @@
 	/**
 	 * Set the event to get the previous restaurants
 	 * 
-	 * @param {function} [handler] The function to fire after the event occurs
+	 * @param {function} handler - The function to fire after the event occurs
 	 */
 	View.prototype._previousRestaurants = function(handler){
 		const self = this;
@@ -435,8 +446,8 @@
 	/**
 	 * Render the specified command with the given parameter
 	 *
-	 * @param {string} [command]
-	 * @param {object} [parameter] Optionnal
+	 * @param {string} command
+	 * @param {object} [parameter]
 	 */
 	View.prototype.render = function(command, parameter){
 		switch(command){
@@ -492,7 +503,7 @@
 	/**
 	 * Display the card of a restaurant
 	 *
-	 * @param {object} [restaurant] The restaurant
+	 * @param {object} restaurant - The restaurant
 	 */
 	View.prototype._showCard = function(restaurant){
 		let card = this.template.card(restaurant);
@@ -502,7 +513,7 @@
 	/**
 	 * Display a modal window which contains the restaurant's reviews
 	 *
-	 * @param {object} [restaurant] The restaurant to display
+	 * @param {object} restaurant - The restaurant to display
 	 */
 	View.prototype._showReviews = function(restaurant){
 		let modal = this.template.details(restaurant);
@@ -512,8 +523,8 @@
 	/**
 	 * Display a modal window which contains the picture of a restaurant
    	 *
-	 * @param {string} [name] The restaurant's name
-	 * @param {string} [src] The link of the restaurant's picture
+	 * @param {string} name - The restaurant's name
+	 * @param {string} src - The link of the restaurant's picture
 	 */
 	View.prototype._showPicture = function(name, src){
 		let modal = this.template.picture(name, src);
@@ -523,7 +534,7 @@
 	/**
 	 * Change the looking of a card when user put the cursor over the bound marker
 	 *
-	 * @param {string|number} [id] The restaurant's id
+	 * @param {string|number} id - The restaurant's id
 	 */
 	View.prototype._highlightCard = function(id){
 		let card = document.querySelector(".card" + id);
@@ -536,7 +547,7 @@
 	/**
 	 * Change the looking of a card when user's cursor leave the bound marker
 	 *
-	 * @param {string|number} [id] The restaurant's id
+	 * @param {string|number} id - The restaurant's id
 	 */
 	View.prototype._idleCard = function(id){
 		let card = document.querySelector(".card" + id);
@@ -549,9 +560,9 @@
 	/**
 	 * Update the attributes of the next button
 	 * 
-	 * @param {number} [length] The length of the list of restaurants to display
-	 * @param {number} [heap] The bunch of restaurants to display per page
-	 * @param {number} [index] The index of the last restaurant displayed from the list
+	 * @param {number} length - The length of the list of restaurants to display
+	 * @param {number} heap - The bunch of restaurants to display per page
+	 * @param {number} index - The index of the last restaurant displayed from the list
 	 */
 	View.prototype._nextButton = function(length, heap, index){
 		this.$nextButt.className = "";
@@ -566,8 +577,8 @@
 	/**
 	 * Update the attributes of the previous button
 	 *
-	 * @param {number} [heap] The bunch of restaurants to display per page
-	 * @param {number} [index] The index of the first restaurant to displayed
+	 * @param {number} heap - The bunch of restaurants to display per page
+	 * @param {number} index - The index of the first restaurant to displayed
 	 */
 	View.prototype._previousButton = function(heap, index){
 		this.$previousButt.className = "";
@@ -582,7 +593,7 @@
 	/**
 	 * Display a modal window to add a restaurant
 	 *
-	 * @param {object} [restaurant] The restaurant to add
+	 * @param {object} restaurant - The restaurant to add
 	 */
 	View.prototype._addRestaurant = function(restaurant){
 		let modal = this.template.addRestaurant(restaurant);
@@ -600,7 +611,7 @@
 	/**
 	 * Get the index of the first restaurant shown in the list
 	 *
-	 * @returns {number} The index of the 
+	 * @returns {number} The index of the restaurant
 	 */
 	View.prototype._getIndex = function(){
 		let index = this.$previousButt.className;

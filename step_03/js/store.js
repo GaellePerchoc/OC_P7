@@ -1,6 +1,15 @@
+/** @namespace */ 
 (function(window){
 	'use strict';
 
+	/** 
+	 * Creates a new client side storage object and will create an empty
+	 * collection if no collection already exists.
+	 * 
+	 * @namespace
+	 * @alias window.app.Storage
+	 * @class
+	 */
 	function Storage (){
 		this.adapter = new LocalStorage('DB_restaurants_S03');
 		this.db = low(this.adapter);
@@ -13,7 +22,7 @@
 	/**
 	 * Find and return an array of restaurants depending of the parameters of the request
 	 *
-	 * @param {object} [query] The map's bounds
+	 * @param {object} query - The map's bounds
 	 * @returns {array} Array of restaurants which fit the query
 	 */
 	Storage.prototype.find = function(query) {
@@ -33,9 +42,9 @@
 	 * If there is no specified id, the data is an array of new restaurant(s).
 	 * Otherwise, the id indicates which restaurant is to update
 	 *
-	 * @param {array|boolean} [data] The data to save into the DB
-	 * @param {function} [callback] The function to fire after saving the data into the DB
-	 * @param {string|number} [id] The id of the restaurant to update
+	 * @param {array|boolean} data - The data to save into the DB
+	 * @param {function} callback - The function to fire after saving the data into the DB
+	 * @param {string|number} [id] - The id of the restaurant to update
 	 */
 	Storage.prototype.save = function(data, callback, id){
 		let restaurant;
@@ -92,7 +101,7 @@
 	/**
 	 * Calculate the average ratings of a restaurant
 	 *
-	 * @param {object} [restaurant] The restaurant
+	 * @param {object} - restaurant - The restaurant
 	 */
 	Storage.prototype._average = function(restaurant){
 		console.log(restaurant)

@@ -1,3 +1,4 @@
+/** @namespace */ 
 (function(window){
 	'use strict';
 
@@ -40,6 +41,13 @@
     				+ '8.8,33.9,1,24,1z M22.6,25.2c-3.8-0.8-6.3-4.4-5.5-8.2c0.8-3.8,4.4-6.3,8.2-5.5 c2.8,'
     				+ '0.6,5,2.7,5.5,5.5c0.7,3.8-1.8,7.5-5.5,8.2C24.4,25.4,23.5,25.4,22.6,25.2z';
 
+    /** 
+     * Creates a new Map instance which contains a google maps MVCObject.
+     *
+	 * @namespace
+	 * @alias window.app.Map
+	 * @class
+	 */			
 	function Map () {
 		
 		this.map = new google.maps.Map(document.getElementById("map"), mapOptions);
@@ -48,7 +56,6 @@
 		this.geocoder = new google.maps.Geocoder();
 
 		this._setOptions();
-		
 	}
 
 	/**
@@ -72,7 +79,7 @@
 	/**
 	 * Set the location of the user on map and center the map on it, if the user allows it
 	 *
-	 * @param {function} [callback] The function to fire after user has allowed (or not) to geolocate
+	 * @param {function} callback - The function to fire after user has allowed (or not) to geolocate
 	 */
 	Map.prototype.setUser = function(callback){
 		const self = this;
@@ -113,6 +120,8 @@
 
 	/**
 	 * Get and return the bounds of the map
+	 * 
+	 * @returns {object} The bounds of the map
 	 */
 	Map.prototype.bounds = function(){
 		let bounds = this.map.getBounds();
@@ -128,7 +137,7 @@
 	/**
 	 * Search for restaurants within the map's bounds
 	 *
-	 * @param {function} [callback] The function to fire after the nearby search has been done
+	 * @param {function} callback - The function to fire after the nearby search has been done
 	 */
 	Map.prototype.search = function(callback){
 		let service = new google.maps.places.PlacesService(this.map);
@@ -167,8 +176,8 @@
 	/**
 	 * Get the reviews of a specific restaurant
 	 *
-	 * @param {string|number} [id] The restaurant's id
-	 * @param {function} [callback] The function to fire after the reviews have been get
+	 * @param {string|number} id - The restaurant's id
+	 * @param {function} callback -  The function to fire after the reviews have been get
 	 */
 	Map.prototype.getDetails = function(id, callback){
 		let service = new google.maps.places.PlacesService(this.map);
@@ -199,9 +208,9 @@
 	/**
 	 * Bind an event to a specific handler
 	 *
-	 * @param {string} [event] The name of the event
-	 * @param {function} [handler] A function bind to a given event
-	 * @param {object} [parameter] Optional
+	 * @param {string} event - The name of the event
+	 * @param {function} handler - A function bind to a given event
+	 * @param {object} [parameter]
 	 */
 	Map.prototype.bind = function(event, handler, parameter){
 		switch(event){
@@ -235,7 +244,7 @@
 	/**
 	 * Set the 'dragend' event
 	 * 
-	 * @param {function} [handler] The function bound to this event
+	 * @param {function} handler - The function bound to this event
 	 */
 	Map.prototype._dragend = function(handler){
 		const self = this;
@@ -247,7 +256,7 @@
 	/**
 	 * Set the 'zoom changed' event
 	 *
-	 * @param {function} [handler] The function bound to this event
+	 * @param {function} handler - The function bound to this event
 	 */
 	Map.prototype._zoomChanged = function(handler){
 		const self = this;
@@ -259,7 +268,7 @@
 	/**
 	 * Set the 'tilesLoaded' event
 	 *
-	 * @param {function} [handler] The function bound to this event
+	 * @param {function} handler - The function bound to this event
 	 */
 	Map.prototype._tilesLoaded = function (handler) {
 		const self = this;
@@ -272,8 +281,8 @@
 	/**
 	 * Set the 'mouseover' event on specific marker
 	 *
-	 * @param {function} [handler] The function bound to this event
-	 * @param {object} [marker] The marker on which the event has to be bound
+	 * @param {function} - handler - The function bound to this event
+	 * @param {object} marker - The marker on which the event has to be bound
 	 */
 	Map.prototype._mouseOverMarker = function(handler, marker){
 		marker.addListener('mouseover', function(){
@@ -288,8 +297,8 @@
 	/**
 	 * Set the 'mouseout' event on marker
 	 *
-	 * @param {function} [handler] The function bound to this event
-	 * @param {object} [marker] The marker on which the event has to be bound
+	 * @param {function} handler - The function bound to this event
+	 * @param {object} marker - The marker on which the event has to be bound
 	 */
 	Map.prototype._mouseLeaveMarker = function(handler, marker){
 		marker.addListener('mouseout', function(){
@@ -307,9 +316,9 @@
 	 * It open the bound popup
 	 * It binds the event to get reviews to the popup linked to the marker
 	 *
-	 * @param {function} [showReviews] The function bound to the event
-	 * @param {object} [popup] The popup bound to the marker
-	 * @param {object} [marker] The marker on which the event has to be bound
+	 * @param {function} showReviews - The function bound to the event
+	 * @param {object} popup - The popup bound to the marker
+	 * @param {object} marker - The marker on which the event has to be bound
 	 */
 	Map.prototype._clickedMarker = function(showReviews, popup, marker){
 		const self = this;
@@ -325,8 +334,8 @@
 	/**
 	 * Get the reviews of a restaurant from its popup
 	 *
-	 * @param {function} [showReviews] The function bound to the event
-	 * @param {object} [popup] The popup from which the user gets the reviews
+	 * @param {function} showReviews - The function bound to the event
+	 * @param {object} popup - The popup from which the user gets the reviews
 	 */
 	Map.prototype._getReviews = function(showReviews, popup){
 		const self = this;
@@ -344,7 +353,7 @@
 	/**
 	 * Set event to add a restaurant on click on map
 	 * 
-	 * @param {function} [addRestaurant]
+	 * @param {function} addRestaurant - The function to bound to the event if geocoder returns an address
 	 */
 	Map.prototype._addRestaurant = function(addRestaurant){
 		const self = this;
@@ -371,9 +380,9 @@
 	/**
 	 * Unbind an event
 	 * 
-	 * @param {string} [event] The name of the event to unbind
+	 * @param {string} event The name of the event to unbind
 	 */
-	Map.prototype.unbind = function(event, handler){
+	Map.prototype.unbind = function(event){
 	 	switch(event){
 	 		case "click":
 	 			google.maps.event.clearListeners(this.map, "click");
@@ -384,7 +393,7 @@
 	/**
 	 * Render the given command with the specified parameters
 	 * 
-	 * @param {string} [command] The name of the command
+	 * @param {string} command - The name of the command
 	 * @param {string|number|object} [parameter] Optional
 	 */
 	Map.prototype.render = function(command, parameter){
@@ -416,10 +425,10 @@
 	/**
 	 * Create marker and set its associated events
 	 * 
-	 * @param {object} [restaurant] The restaurant relative to the created marker
-	 * @param {function} [addPopup] The function which associates a popup and its events to the marker
-	 * @param {function} [onOverMarker] The function to fire when the 'mouseover' event occurs
-	 * @param {function} [onLeaveMarker] The function to fire when the 'mouseout' event occurs
+	 * @param {object} restaurant - The restaurant relative to the created marker
+	 * @param {function} addPopup - The function which associates a popup and its events to the marker
+	 * @param {function} onOverMarker - The function to fire when the 'mouseover' event occurs
+	 * @param {function} onLeaveMarker - The function to fire when the 'mouseout' event occurs
 	 */
 	Map.prototype._addMarker = function(restaurant, addPopup, onOverMarker, onLeaveMarker){
 		const self = this;
@@ -460,7 +469,7 @@
 	/**
 	 * Change the icon of the marker when the mouse's user is over the card bound to the marker
 	 *
-	 * @param {string|number} [id] The marker's id 
+	 * @param {string|number} id - The marker's id 
 	 */
 	Map.prototype._mouseOverCard = function(id){
 		this.markers.find(function(marker){
@@ -476,7 +485,7 @@
 	/**
 	 * Change the icon of the marker when the mouse's user leave the card bound to the marker
 	 *
-	 * @param {string|number} [id] The marker's id 
+	 * @param {string|number} id - The marker's id 
 	 */
 	Map.prototype._mouseLeaveCard = function(id){
 		this.markers.find(function(marker){
@@ -492,9 +501,9 @@
 	/**
 	 * Create a popup and set its events to get the reviews
 	 *
-	 * @param {object} [marker] The marker on which attach a popup
-	 * @param {string} [content] The content of the popup
-	 * @param {function} [showReviews] The function to fire when the 'click' event on marker occurs
+	 * @param {object} marker - The marker on which attach a popup
+	 * @param {string} content - The content of the popup
+	 * @param {function} showReviews - The function to fire when the 'click' event on marker occurs
 	 */
 	Map.prototype._addPopup = function(marker, content, showReviews){
 		const self = this;
@@ -512,8 +521,8 @@
 	/**
 	 * Update the content of the popup
 	 * 
-	 * @param {string|number} [id] The popup's id
-	 * @param {string} [content] The new content of the popup
+	 * @param {string|number} id - The popup's id
+	 * @param {string} content - The new content of the popup
 	 */
 	Map.prototype._updatePopup = function(id, content){
 		const self = this;
@@ -527,7 +536,7 @@
 	/**
 	 * Update the cursor on map
 	 * 
-	 * @param {string} [content] The cursor's type
+	 * @param {string} content - The cursor's type
 	 */
 	Map.prototype._cursor = function(cursor){
 		this.map.setOptions({
