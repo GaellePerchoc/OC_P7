@@ -7,7 +7,7 @@ Work in progress
 "You've decided to launch your own restaurant review platform. Your goal is to create an easy-to-use, simple service that offers review of restaurants around you! "
 
 ## Docs
-Project documentation available here : <a href="https://gaelleperchoc.github.io/OC_P7/" target="_blank">Documentation</a>
+Project documentation is available here : [Documentation](https://gaelleperchoc.github.io/OC_P7/)
 
 ## Skills
 * Develop a complete javascript web app, according the app specifications
