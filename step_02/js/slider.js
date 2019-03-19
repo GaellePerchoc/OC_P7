@@ -1,6 +1,14 @@
+/** @namespace */ 
 (function(window){
 	'use strict';
 
+	/** 
+	 * Slider which allows to filter the restaurants
+	 * 
+	 * @namespace
+	 * @alias window.app.Slider
+	 * @class
+	 */
 	function Slider () {
 		this.$slider = document.getElementById('slider');						
   		this.$labels = document.querySelectorAll('.slider-labels li');
@@ -49,6 +57,8 @@
 
 	/**
 	 * Return the active values of the filter
+	 * 
+	 * @returns {array} The active values of the filter
 	 */
 	Slider.prototype.getValues = function(){
 		this.values = this.$slider.noUiSlider.get();
@@ -58,7 +68,7 @@
 	/**
 	 * Define the 'change' event
 	 * 
-	 * @param {function} [handler] The function to fire when the event 'change' occurs
+	 * @param {function} handler - The function to fire when the event 'change' occurs
 	 */
 	Slider.prototype.changeValues = function(handler){
 		const self = this;

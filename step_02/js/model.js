@@ -1,6 +1,14 @@
+/** @namespace */ 
 (function(window){
 	'use strict';
 
+	/** 
+	 * Creates a new Model instance.
+	 * 
+	 * @namespace 
+	 * @alias window.app.Model
+	 * @class
+	 */
 	function Model (){
 		this.restaurants = [];
 		this.tempRestaurants;
@@ -9,8 +17,8 @@
 	/**
 	 * Creates new restaurant(s)
 	 *
-	 * @param {array} [data] An array of restaurants
-	 * @param {function} [callback] The function to fire after the restaurants are created
+	 * @param {array} data - An array of restaurants
+	 * @param {function} callback - The function to fire after the restaurants are created
 	 */
 	Model.prototype.create = function(data, callback) {
 		const self = this;	
@@ -36,8 +44,8 @@
 	/**
 	 * Depending of the query, find a restaurant or a list of restaurants
 	 *
-	 * @param {string|number|object} [query] The query to get restaurant(s) 
-	 * @param {function} [callback] The function to fire when the restaurant or the array of restaurants has been found
+	 * @param {string|number|object} query - The query to get restaurant(s) 
+	 * @param {function} callback - The function to fire when the restaurant or the array of restaurants has been found
 	 */
 	Model.prototype.read = function(query, callback) {
 		const self = this;
@@ -81,9 +89,9 @@
 	/**
 	 * Update an existing restaurant
 	 *
-	 * @param {string | number} [id] The id's of the restaurant
-	 * @param {boolean | object} [data] The restaurant's parameter to update
-	 * @param {function} [callback] The function to fire after the restaurant is updated
+	 * @param {string | number} id - The id's of the restaurant
+	 * @param {boolean | object} data - The restaurant's parameter to update
+	 * @param {function} callback - The function to fire after the restaurant is updated
 	 */
 	Model.prototype.update = function(id, data, callback) {
 		const self = this;
@@ -111,7 +119,7 @@
 	/**
 	 * Calculate the average rating of a restaurant
 	 *
-	 * @param {array} [ratings] The restaurant's reviews
+	 * @param {array} ratings - The restaurant's reviews
 	 */
 	Model.prototype._getAverage = function(ratings){
 		let sum = 0
@@ -130,14 +138,14 @@
 	 * Request the Street View Image Metadata of a restaurant and according to the response, 
 	 * update the restaurant to inform whether a Street View Static Image exists for the place
 	 *
-	 * @param {object} [restaurant] The restaurant's object
-	 * @param {function} [callback] The function to fire after the model has been updated
+	 * @param {object} restaurant - The restaurant's object
+	 * @param {function} callback - The function to fire after the model has been updated
 	 */
 	Model.prototype._getPicture = function(restaurant, callback){
 		let request = 
 			  "https://maps.googleapis.com/maps/api/streetview/metadata?"
 			+ "&location=" + restaurant.lat + "," + restaurant.long
-			+ "&key=API_KEY";
+			+ "&key=YOU_API_KEY";
 
 		const req = new XMLHttpRequest();
 		const self = this;

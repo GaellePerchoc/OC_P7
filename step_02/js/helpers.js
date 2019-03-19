@@ -4,8 +4,9 @@
 	/**
 	 * Get the cookie
 	 *
-	 * @param {string} [name] The cookie's name
-	 * @returns The cookie || An empty string
+	 * @global
+	 * @param {string} name The cookie's name
+	 * @returns {string} The cookie || An empty string
 	 */
 	window.getCookie = function (name) {
 		let cname = name + "=";
@@ -27,9 +28,10 @@
 	/**
 	 * Set a cookie
 	 *
-	 * @param {object} [name] The cookie's name
-	 * @param {function} [value] The cookie's value
-	 * @param {number} [days] The number of days the cookie would be set
+	 * @global
+	 * @param {object} name - The cookie's name
+	 * @param {function} value - The cookie's value
+	 * @param {number} days - The number of days the cookie would be set
 	 */
 	window.setCookie = function(name, value, days){
 		let d = new Date();
@@ -41,7 +43,8 @@
 	/**
 	 * Delete a cookie
 	 *
-	 * @param {string} [name] The cookie's name
+	 * @global
+	 * @param {string} name - The cookie's name
 	 */
 	window.eraseCookie = function (name){
 		setCookie(name, "", -1);

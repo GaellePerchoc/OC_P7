@@ -1,6 +1,18 @@
+/** @namespace */ 
 (function(window){
 	'use strict';
 
+	/** 
+	 * Takes a model, a view  and a map and acts as the controller between them.
+	 * 
+	 * @namespace
+	 * @alias window.app.Controller
+	 * @class
+	 *
+	 * @param {object} model - 
+	 * @param {object} view - 
+	 * @param {object} map - 
+	 */
 	function Controller (model, view, map){
 		this.model = model;
 		this.view = view;
@@ -102,8 +114,8 @@
 	/**
 	 * Update the restaurants according to the new values of the filter
 	 *
-	 * @param {number} [min] The min value of the filter
-	 * @param {number} [max] The max value of the filter
+	 * @param {number} min - The min value of the filter
+	 * @param {number} max - The max value of the filter
 	 */
 	Controller.prototype.updateRestaurants = function(min, max){
 		let query = {
@@ -142,7 +154,7 @@
 	/**
 	 * Show the reviews of a restaurant
 	 *
-	 * @param {string|number} [id] The restaurant's id
+	 * @param {string|number} id - The restaurant's id
 	 */
 	Controller.prototype.showReviews = function(id){
 		id = id.toString();
@@ -157,7 +169,7 @@
 					 "https://maps.googleapis.com/maps/api/streetview?"
 					+ "size=600x400"
 					+ "&location=" + restaurant.lat + "," + restaurant.long
-					+ "&key=API_KEY";
+					+ "&key=YOUR_API_KEY";
 				self._bindShowPicture(restaurant.restaurantName, picture);
 			}
 
@@ -168,7 +180,7 @@
 	/**
 	 * Add a new restaurant
 	 *
-	 * @param {object} [restaurant] The restaurant to create
+	 * @param {object} restaurant - The restaurant to create
 	 */
 	Controller.prototype.addRestaurant = function(restaurant){
 		const self = this;
@@ -180,8 +192,8 @@
 	/**
 	 * Add a new review
 	 *
-	 * @param {string|number} [id] The restaurant's id
-	 * @param {object} [review] The review to add
+	 * @param {string|number} id - The restaurant's id
+	 * @param {object} review - The review to add
 	 */
 	Controller.prototype.addReview = function(id, review){
 		const self = this;
@@ -204,8 +216,8 @@
 	/**
 	 * Bind the event to get the picture to the render of this picture
 	 *
-	 * @param {string} [name] The restaurant's object
-	 * @param {string} [picture] The callback to fire after the model is created
+	 * @param {string} name - The restaurant's object
+	 * @param {string} picture - The callback to fire after the model is created
 	 */
 	Controller.prototype._bindShowPicture = function(name, picture){
 		const self = this;
@@ -221,7 +233,7 @@
 	/**
 	 * Bind the event to add a new review
 	 *
-	 * @param {string|number} [id] The restaurant's id
+	 * @param {string|number} id - The restaurant's id
 	 */
 	Controller.prototype._bindAddReview = function(id){
 		const self = this;
@@ -236,7 +248,7 @@
 	/**
 	 * Show cards and markers of the restaurants
 	 *
-	 * @param {array} [list] The list of restaurants to show
+	 * @param {array} list - The list of restaurants to show
 	 */
 	Controller.prototype._show = function(list){
 		this.view.render("resetList");
