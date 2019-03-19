@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: template.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: template.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** @namespace */ 
+(function(window){
+	'use strict';
+
+	/** 
+	 * The app's templates
+	 * 
+	 * @namespace
+	 * @alias window.app.Template
+	 * @class
+	 */
+	function Template () {}
+
+	/**
+	 * Create the card of a restaurant
+	 * Create a &lt;div> HTML string and return it to insert into the page
+	 * 
+	 * @param {object} restaurant - The restaurant
+	 * @returns {string} HTML string
+	 */
+	Template.prototype.card = function(restaurant){
+		
+		let template = 
+				'&lt;a id={{id}}>&lt;/a>'
+			+	'&lt;h2 class="restaurantName">{{restaurantName}}&lt;/h2>'
+			+	'&lt;p class="address">{{address}}&lt;/p>'
+			+	'&lt;span class="stars">{{starsRange}}&lt;/span>'
+			+	'&lt;p class="score">{{score}}&lt;/p>';
+
+		template = template.replace('{{id}}', restaurant.id);
+		template = template.replace('{{restaurantName}}', restaurant.restaurantName);
+		template = template.replace('{{address}}', restaurant.address);
+		template = template.replace('{{starsRange}}', this._starsRating(restaurant.avg));
+		template = template.replace('{{score}}', restaurant.avg.toFixed(1));
+
+		let card = document.createElement("div");
+		card.classList.add("card");
+		card.classList.add("card" + restaurant.id);
+		card.innerHTML = template;
+		
+		return card;
+	}
+
+	/**
+	 * Update the information on the restaurant's card after a new review has been added
+	 * 
+	 * @param {object} restaurant - The restaurant whose card has to be updated
+	 */
+	Template.prototype.updateCard = function(restaurant){
+		let card = document.querySelector('.card' + restaurant.id);
+		let score = card.querySelector('.score');
+		score.innerHTML = restaurant.avg.toFixed(1);
+
+		let starsRating = card.querySelector('.stars');
+		starsRating.innerHTML = this._starsRating(restaurant.avg);
+	}
+
+	/**
+	 * Create and return a modal window which contains the reviews of a restaurant
+	 * 
+	 * @param {object} restaurant - The restaurant
+	 * @returns {object} Modal window
+	 */
+	Template.prototype.details = function(restaurant){
+		if(!alertify.details){
+			this._modal("details");
+		}
+		
+		let content = this._contentDetails(restaurant)
+		let modal = alertify.details(content);
+
+		if(restaurant.picture == false){
+			document.querySelector('#picture').classList.remove('menu-title');
+			document.querySelector('#picture').classList.add('inactive');
+		} 
+
+		let cancel = document.querySelector('.reviews .footer .cancel');
+		cancel.addEventListener('click', function(){
+			alertify.details().close();
+		})
+
+		return modal;
+	}
+
+	/**
+	 * Create and return a modal window which contains the picture of the restaurant
+	 * 
+	 * @param {string} name - The restaurant's name
+	 * @param {string} src - The link of the picture
+	 * @returns {object} Modal window
+	 */
+	Template.prototype.picture = function(name, src){
+		if(!alertify.picture){
+			this._modal("picture");
+		}	
+
+		let content = '&lt;div class="pictureWrapper">&lt;img rel="preload" class="picture" src="' + src + '" alt="' + name + '" />&lt;/div>';
+		let modal = alertify.picture(content);
+		alertify.picture().closeOthers();
+		alertify.picture().set({onclose: function(){
+			alertify.details().show();
+		}})
+
+		return modal;
+	}
+
+	/**
+	 * Create a modal window template
+	 * 
+	 * @param {string} modalName - The modal's name
+	 * @returns {object} Modal window
+	 */
+	Template.prototype._modal = function(modalName){
+		alertify.dialog(modalName, function factory (){
+			return {
+				main: function(content){
+					this.setContent(content);
+				},
+				setup:function(){
+				    return { 
+				       	options: {
+				       		transition:'fade',
+				       		resizable:false,
+				       		movable: false,
+			        		maximizable:false,
+			        		pinnable:false,
+			        		padding:false,
+			        		frameless:true
+				        }				        	
+				    };
+				}
+			}
+		})		
+	}
+
+	/**
+	 * Create the content of the modal window which displays the restaurant's reviews
+	 * Create and return a &lt;div> HTML string 
+	 * 
+	 * @param {object} restaurant - The restaurant for which the card is created
+	 * @returns {string} HTML &lt;div>
+	 */
+	Template.prototype._contentDetails = function(restaurant){
+		let template = 
+			 '&lt;div class="reviews">'
+			+	'&lt;div class="header">'
+			+	   	'&lt;h2 class="restaurantName">{{restaurantName}}&lt;/h2>'
+			+		'&lt;p class="address">{{address}}&lt;/p>'
+			+		'&lt;span class="stars">{{starsRange}}&lt;/span>'
+			+		'&lt;span class="score">{{average}}&lt;/span>'
+			+	'&lt;/div>'
+			+	'&lt;div class="options">'
+			+		'&lt;div class="menu">'
+			+			'&lt;div class="menu-title" id="picture">Photo&lt;/div>'
+			+		'&lt;/div>'
+			+		'&lt;div class="menu">'
+			+			'&lt;div class="menu-title" id="addReview">Donner un avis&lt;/div>'
+			+		'&lt;/div>'
+			+	'&lt;/div>'
+			+	'&lt;div class="ratings">{{ratings}}&lt;/div>'
+			+	'&lt;div class="footer">'
+			+		'&lt;div class="cancel">Fermer&lt;/div>'
+			+	'&lt;/div>'
+			+'&lt;/div>';	
+			
+
+		template = template.replace('{{restaurantName}}', restaurant.restaurantName);
+		template = template.replace('{{address}}', restaurant.address);
+		template = template.replace('{{starsRange}}', this._starsRating(restaurant.avg));
+		template = template.replace('{{average}}', restaurant.avg.toFixed(1));
+		template = template.replace('{{ratings}}', this._reviews(restaurant.ratings));
+
+		return template;
+	}
+
+	/**
+	 * Create a list of the restaurant's reviews
+	 * Create and return a serie of &lt;div> HTML string
+	 * If the restaurant get no reviews, return a simple &lt;p> HTML string
+	 * 
+	 * @param {array} ratings - The array of the restaurant's ratings
+	 * @returns {string} HTML string
+	 */
+	Template.prototype._reviews = function(ratings){
+		let review = '';
+		if(ratings.length > 0){
+			for(let i = 0; i &lt; ratings.length; i++){
+				let template = 
+					 '&lt;div class="review">'
+					+	'&lt;p class="userName">{{userName}}&lt;/p>'
+					+	'&lt;span class="stars">{{starsRange}}&lt;/span>'
+					+	'&lt;span class="score">{{ratings}}&lt;/span>'
+					+	'&lt;p class="comment">{{comment}}&lt;/p>'
+					+'&lt;/div>';
+
+				template = template.replace('{{userName}}', ratings[i].userName);
+				template = template.replace('{{ratings}}', ratings[i].stars.toFixed(1));
+				template = template.replace('{{starsRange}}', this._starsRating(ratings[i].stars));
+				template = template.replace('{{comment}}', ratings[i].comment);
+				review += template;
+			}
+			return review;	
+		} else {
+			return review = '&lt;p>Pas de commentaires pour le moment. &lt;br /> Donnez-nous votre avis !&lt;/p>';
+		}
+		
+	}
+
+	/**
+	 * Create the stars rating of a restaurant
+	 * Create and return a HTML string
+	 * 
+	 * @param {number} rating - The rating or the average rating a restaurant get
+	 * @returns {string} HTML string
+	 */
+	Template.prototype._starsRating = function(rating){
+		let starsRange = '';
+		let fullStar = '&lt;i class="fas fa-star">&lt;/i>';
+		let halfStar = '&lt;i class="fas fa-star-half-alt">&lt;/i>';
+		let emptyStar = '&lt;i class="far fa-star">&lt;/i>';
+		
+		if(rating > 0){
+			for(let i = 0; i &lt; Math.floor(rating); i++){
+        		starsRange += fullStar;    		
+    		}
+		}
+
+    	if(rating % 1 !== 0){
+    		starsRange += halfStar;
+    	}
+		
+    	if(rating &lt; 5){
+    		for(let j = 0; j &lt; Math.floor(5 - rating); j++){
+    			starsRange += emptyStar;
+    		}
+    	}
+
+    	return starsRange;
+	}
+
+	/**
+	 * Create and return a modal window to add a new restaurant
+	 * 
+	 * @param {object} restaurant - The restaurant to add
+	 * @returns {object} Modal window
+	 */
+	Template.prototype.addRestaurant = function(restaurant){
+		if(!alertify.addRestaurant){
+			this._modal("addRestaurant");
+		}
+		
+		let content = this._contentAddRestaurant(restaurant)
+		let modal = alertify.addRestaurant(content);
+		
+		alertify.addRestaurant().set({ 
+			onclose: function(){
+				let butt = document.querySelector('.add');
+				butt.classList.remove('add');
+			}
+		})
+		return modal;
+	}
+
+	/**
+	 * Create and return a modal window to add a new review
+	 * 
+	 * @returns {object} Modal window
+	 */
+	Template.prototype.addReview = function(){
+		if(!alertify.addReview){
+			this._modal("addReview");
+		}
+
+		let content = this._contentAddReview();
+		let modal = alertify.addReview(content);
+
+		alertify.addReview().closeOthers();
+		alertify.addReview().set({ 
+			onclose: function(){
+				alertify.details().show();
+			}
+		})
+		return modal;
+	}
+
+	/**
+	 * Create and return a modal window to informs the user how to add a new restaurant
+	 *
+	 * @returns {object} Modal window
+	 */
+	Template.prototype.info = function(){
+		if(!alertify.info){
+			this._modal("info");
+		}
+		
+		let content = this._infoContent();
+		let modal = alertify.info(content);
+		let cookieConsent = getCookie("cookie");
+		if(!cookieConsent){
+			document.querySelector('.noRepeat').style.display = "none";
+		}
+		let cancel = document.querySelector('.information .confirm');
+		let cookie = document.querySelector('.information input');
+		cancel.addEventListener("click", function(){
+			if(cookie.checked == true){
+				setCookie("consent", "ok", 30);
+			}
+			alertify.info().close();
+		})
+		return modal;
+	}
+
+	/**
+	 * Create the content of the modal window to add a new restaurant
+	 * 
+	 * @param {object} restaurant - The restaurant to add
+	 * @returns {string} HTML &lt;div>
+	 */
+	Template.prototype._contentAddRestaurant = function(restaurant){
+		let template = 
+			 '&lt;div class="form addRestaurant">'
+			+	'&lt;h2>Ajouter un restaurant&lt;/h2>'
+			+	'&lt;form>'
+			+		'&lt;div>'
+			+			'&lt;input id="restaurantName" type="text" placeholder="Nom du restaurant">'
+			+		'&lt;/div>'
+			+		'&lt;div>'
+			+			'&lt;input id="address" type="text" value="{{address}}" data-lat="{{lat}}" data-lng="{{lng}}" disabled="disabled">'
+			+		'&lt;/div>'
+			+	'&lt;/form>'
+			+	'&lt;div class="footer">'
+			+		'&lt;div class="cancel">Annuler&lt;/div>'
+			+		'&lt;div class="confirm">Valider&lt;/div>'
+			+	'&lt;/div>'
+			+ '&lt;/div>';
+
+		template = template.replace('{{lat}}', restaurant.lat);
+		template = template.replace('{{lng}}', restaurant.lng);
+		template = template.replace('{{address}}', restaurant.address);
+
+		return template;
+	}
+
+	/**
+	 * Create the content of the modal window to add a new review
+	 * 
+	 * @returns {string} HTML &lt;div>
+	 */
+	Template.prototype._contentAddReview = function(){
+		let template = 
+			 '&lt;div class="form addReview">'
+			+	'&lt;h2>Ajouter un avis&lt;/h2>'
+			+	'&lt;form>'
+			+		'&lt;div class="starsRange">'
+			+			'&lt;input type="radio" id="star5" name="rating" value="5">&lt;label for="star5">&lt;/label>'
+			+			'&lt;input type="radio" id="star4" name="rating" value="4">&lt;label for="star4">&lt;/label>'
+			+			'&lt;input type="radio" id="star3" name="rating" value="3">&lt;label for="star3">&lt;/label>'
+			+			'&lt;input type="radio" id="star2" name="rating" value="2">&lt;label for="star2">&lt;/label>'
+    		+			'&lt;input type="radio" id="star1" name="rating" value="1">&lt;label for="star1">&lt;/label>'
+    		+		'&lt;/div>'
+    		+		'&lt;div>'
+    		+			'&lt;input id="userName" type="text" placeholder="Votre nom">'		
+    		+		'&lt;/div>'
+    		+		'&lt;div>'
+    		+			'&lt;textarea id="newReview" rows="10" placeholder="Votre avis">&lt;/textarea>'
+    		+		'&lt;/div>'
+    		+	'&lt;/form>'
+    		+	'&lt;div class="footer">'
+    		+		'&lt;div class="cancel">Annuler&lt;/div>'
+    		+		'&lt;div class="confirm">Valider&lt;/div>'
+    		+	'&lt;/div>'
+    		+'&lt;/div>';
+
+		return template;
+	}
+
+	/**
+	 * Create the content of the modal window which inform users how to add a new restaurant
+	 * 
+	 * @returns {string} HTML &lt;div>
+	 */
+	Template.prototype._infoContent = function(){
+		let template = 
+			 '&lt;div class=information>'
+			+  '&lt;h2>Ajouter un restaurant&lt;/h2>'
+			+	'&lt;div>'
+			+ 		'Pour ajouter un restaurant, zoomer et cliquer sur l\'emplacement de votre choix.' 
+			+ 		' Si vous souhaitez quitter le mode pour ajouter un restaurant, il faut cliquer à nouveau sur le bouton "ajouter un restaurant".'
+			+	'&lt;/div>'
+			+ 	'&lt;div class="noRepeat">'
+			+ 		'&lt;input type="checkbox" id="info" name="info">'
+			+		'&lt;label for="info">Ne plus afficher ce message&lt;/label>'
+			+ 	'&lt;/div>'
+			+	'&lt;div class="footer">'
+    		+		'&lt;div class="confirm">Ok&lt;/div>'
+    		+	'&lt;/div>'
+    		+ '&lt;/div>';
+		return template;
+	}
+	
+	Template.prototype.popup = function(name, average, id){
+		let template = 
+			 '&lt;div class="popup">'
+			+	'&lt;h3>{{restaurantName}}&lt;/h3>'
+			+	'&lt;span class="stars">{{starsRange}}&lt;/span>'
+			+	'&lt;p class="score">{{score}}&lt;/p>'
+			+	'&lt;a id="popup{{id}}">Plus d\'infos&lt;/a>'
+			+ '&lt;/div>';
+
+		template = template.replace("{{restaurantName}}", name);
+		template = template.replace("{{starsRange}}", this._starsRating(average));
+		template = template.replace("{{score}}", average.toFixed(1));
+		template = template.replace("{{id}}", id);
+		return template;
+	}
+
+	window.app = window.app || {};
+	window.app.Template = Template;
+})(window);</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="window.App.html">App</a></li><li><a href="window.app.Controller.html">Controller</a></li><li><a href="window.app.Map.html">Map</a></li><li><a href="window.app.Model.html">Model</a></li><li><a href="window.app.Slider.html">Slider</a></li><li><a href="window.app.Storage.html">Storage</a></li><li><a href="window.app.Template.html">Template</a></li><li><a href="window.app.View.html">View</a></li></ul><h3>Global</h3><ul><li><a href="global.html#eraseCookie">eraseCookie</a></li><li><a href="global.html#getCookie">getCookie</a></li><li><a href="global.html#setCookie">setCookie</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Mar 19 2019 11:22:09 GMT+0100 (GMT+01:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
