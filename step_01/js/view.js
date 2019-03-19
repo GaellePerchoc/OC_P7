@@ -1,6 +1,17 @@
+/** @namespace */ 
 (function(window){
 	'use strict';
 
+	/** 
+	 * Creates a new View instance and hooks up the template and the slider.
+	 * 
+	 * @namespace
+	 * @alias window.app.View
+	 * @class
+	 *
+	 * @param {object} template
+	 * @param {object} slider 
+	 */
 	function View (template, slider) {
 		this.template = template;
 		this.slider = slider;
@@ -17,9 +28,9 @@
 	/**
 	 * Bind each event which could happen into the view with the corresponding handler
 	 * 
-	 * @param {string} [event] 
-	 * @param {function} [handler] 
-	 * @param {string|number} [parameter] Optional
+	 * @param {string} event 
+	 * @param {function} handler
+	 * @param {string|number} [parameter]
 	 */
 	View.prototype.bind = function(event, handler, parameter){
 		switch(event){
@@ -82,7 +93,7 @@
 	/**
 	 * Scroll to a specific location on the page
 	 *
-	 * @param {number} [top] The top property
+	 * @param {number} top- The top property
 	 */
 	View.prototype._scrollTo = function(top) {
 		window.scroll({
@@ -114,7 +125,7 @@
 	/**
 	 * Set the event to get the reviews of a restaurant
 	 *
-	 * @param {function} [handler] The function to fire after the event occurs
+	 * @param {function} handler - The function to fire after the event occurs
 	 */
 	View.prototype._getReviews = function(handler){
 		const self = this;
@@ -129,7 +140,7 @@
 	/**
 	 * Set the event to get the picture of a restaurant
 	 * 
-	 * @param {function} [handler] The function to fire after the event occurs
+	 * @param {function} handler - The function to fire after the event occurs
 	 */
 	View.prototype._getPicture = function(handler){
 		let image = document.querySelector('#picture');
@@ -141,7 +152,7 @@
 	/**
 	 * Set the event that occurs when mouse is over a card
 	 * 
-	 * @param {function} [handler] The function to fire after the event occurs 
+	 * @param {function} handler - The function to fire after the event occurs 
 	 */
 	View.prototype._mouseOverCard = function(handler){
 		const self = this;
@@ -156,7 +167,7 @@
 	/**
 	 * Set the event that occurs when mouse leave a card
 	 * 
-	 * @param {function} [handler] The function to fire after the event occurs
+	 * @param {function} handler - The function to fire after the event occurs
 	 */
 	View.prototype._mouseLeaveCard = function(handler, id){
 		const self = this;
@@ -172,8 +183,8 @@
 	/**
 	 * Render the specified command with the given parameter
 	 *
-	 * @param {string} [command]
-	 * @param {object} [parameter] Optionnal
+	 * @param {string} command
+	 * @param {object} [parameter]
 	 */
 	View.prototype.render = function(command, parameter){
 		switch(command){
@@ -211,7 +222,7 @@
 	/**
 	 * Display the card of a restaurant
 	 *
-	 * @param {object} [restaurant] The restaurant
+	 * @param {object} restaurant - The restaurant
 	 */
 	View.prototype._showCard = function(restaurant){
 		let card = this.template.card(restaurant);
@@ -221,7 +232,7 @@
 	/**
 	 * Display a modal window which contains the restaurant's reviews
 	 *
-	 * @param {object} [restaurant] The restaurant to display
+	 * @param {object} restaurant - The restaurant to display
 	 */
 	View.prototype._showReviews = function(restaurant){
 		let modal = this.template.details(restaurant);
@@ -231,8 +242,8 @@
 	/**
 	 * Display a modal window which contains the picture of a restaurant
    	 *
-	 * @param {string} [name] The restaurant's name
-	 * @param {string} [src] The link of the restaurant's picture
+	 * @param {string} name - The restaurant's name
+	 * @param {string} src - The link of the restaurant's picture
 	 */
 	View.prototype._showPicture = function(name, src){
 		let modal = this.template.picture(name, src);
@@ -242,7 +253,7 @@
 	/**
 	 * Change the looking of a card when user put the cursor over the bound marker
 	 *
-	 * @param {string|number} [id] The restaurant's id
+	 * @param {string|number} id - The restaurant's id
 	 */
 	View.prototype._highlightCard = function(id){
 		let card = document.querySelector(".card" + id);
@@ -255,7 +266,7 @@
 	/**
 	 * Change the looking of a card when user's cursor leave the bound marker
 	 *
-	 * @param {string|number} [id] The restaurant's id
+	 * @param {string|number} id - The restaurant's id
 	 */
 	View.prototype._idleCard = function(id){
 		let card = document.querySelector(".card" + id);

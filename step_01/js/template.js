@@ -1,14 +1,21 @@
+/** @namespace */ 
 (function(window){
 	'use strict';
 
-	
+	/** 
+	 * The app's templates
+	 * 
+	 * @namespace
+	 * @alias window.app.Template
+	 * @class
+	 */
 	function Template () {}
 
 	/**
 	 * Create the card of a restaurant
 	 * Create a <div> HTML string and return it to insert into the page
 	 * 
-	 * @param {object} [restaurant] The restaurant
+	 * @param {object} restaurant - The restaurant
 	 * @returns {string} HTML string
 	 */
 	Template.prototype.card = function(restaurant){
@@ -37,7 +44,7 @@
 	/**
 	 * Create and return a modal window which contains the reviews of a restaurant
 	 * 
-	 * @param {object} [restaurant] The restaurant
+	 * @param {object} restaurant - The restaurant
 	 * @returns {object} Modal window
 	 */
 	Template.prototype.details = function(restaurant){
@@ -64,8 +71,8 @@
 	/**
 	 * Create and return a modal window which contains the picture of the restaurant
 	 * 
-	 * @param {string} [name] The restaurant's name
-	 * @param {string} [src] The link of the picture
+	 * @param {string} name - The restaurant's name
+	 * @param {string} src - The link of the picture
 	 * @returns {object} Modal window
 	 */
 	Template.prototype.picture = function(name, src){
@@ -86,7 +93,7 @@
 	/**
 	 * Create a modal window template
 	 * 
-	 * @param {string} [modalName] The modal's name
+	 * @param {string} modalName - The modal's name
 	 * @returns {object} Modal window
 	 */
 	Template.prototype._modal = function(modalName){
@@ -116,7 +123,7 @@
 	 * Create the content of the modal window which displays the restaurant's reviews
 	 * Create and return a <div> HTML string 
 	 * 
-	 * @param {object} [restaurant] The restaurant for which the card is created
+	 * @param {object} restaurant - The restaurant for which the card is created
 	 * @returns {string} HTML <div>
 	 */
 	Template.prototype._contentDetails = function(restaurant){
@@ -154,7 +161,7 @@
 	 * Create and return a serie of <div> HTML string
 	 * If the restaurant get no reviews, return a simple <p> HTML string
 	 * 
-	 * @param {array} [ratings] The array of the restaurant's ratings
+	 * @param {array} ratings - The array of the restaurant's ratings
 	 * @returns {string} HTML string
 	 */
 	Template.prototype._reviews = function(ratings){
@@ -186,7 +193,7 @@
 	 * Create the stars rating of a restaurant
 	 * Create and return a HTML string
 	 * 
-	 * @param {number} [rating] The rating or the average rating a restaurant get
+	 * @param {number} rating - The rating or the average rating a restaurant get
 	 * @returns {string} HTML string
 	 */
 	Template.prototype._starsRating = function(rating){
@@ -217,9 +224,9 @@
 	/**
 	 * Create the content of a popup bound to a restaurant's marker
 	 * 
-	 * @param {string} [name] The restaurant's name
-	 * @param {number} [average] The restaurant's average rating
-	 * @param {string|number} [id] The restaurant's id
+	 * @param {string} name - The restaurant's name
+	 * @param {number} average - The restaurant's average rating
+	 * @param {string|number} id - The restaurant's id
 	 * @returns {string} HTML <div>
 	 */
 	Template.prototype.popup = function(name, average, id){

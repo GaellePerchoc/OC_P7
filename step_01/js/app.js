@@ -1,8 +1,13 @@
+/** @namespace */
 (function(){
 	'use strict';
 
 	/** 
-	 * Set up the application
+	 * Set up the application.
+	 * 
+	 * @namespace
+	 * @alias window.App
+	 * @class
 	 */
 	function App () {
 		this.slider = new app.Slider();

@@ -1,6 +1,18 @@
+/** @namespace */
 (function(window){
 	'use strict';
 
+	/** 
+	 * Takes a model, a view  and a map and acts as the controller between them.
+	 * 
+	 * @namespace
+	 * @alias window.app.Controller
+	 * @class
+	 *
+	 * @param {object} model - 
+	 * @param {object} view - 
+	 * @param {object} map - 
+	 */
 	function Controller (model, view, map){
 		this.model = model;
 		this.view = view;
@@ -93,7 +105,7 @@
 	/**
 	 * Show the reviews of a restaurant
 	 *
-	 * @param {string|number} [id] The restaurant's id
+	 * @param {string|number} id - The restaurant's id
 	 */
 	Controller.prototype.showReviews = function(id){
 		id = id.toString();
@@ -108,7 +120,7 @@
 					 "https://maps.googleapis.com/maps/api/streetview?"
 					+ "size=600x400"
 					+ "&location=" + restaurant.lat + "," + restaurant.long
-					+ "&key=API_KEY";
+					+ "&key=YOUR_API_KEY";
 				self._bindShowPicture(restaurant.restaurantName, picture);
 			}
 
@@ -118,8 +130,8 @@
 	/**
 	 * Bind the event to get the picture to the render of this picture
 	 *
-	 * @param {string} [name] The restaurant's name
-	 * @param {string} [picture] The link of the picture
+	 * @param {string} name - The restaurant's name
+	 * @param {string} picture - The link of the picture
 	 */
 	Controller.prototype._bindShowPicture = function(name, picture){
 		const self = this;
@@ -135,7 +147,7 @@
 	/**
 	 * Show cards and markers of the restaurants
 	 *
-	 * @param {array} [list] The list of restaurants to show
+	 * @param {array} list - The list of restaurants to show
 	 */
 	Controller.prototype._show = function(list){
 		this.view.render("resetList");
