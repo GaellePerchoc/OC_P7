@@ -249,7 +249,6 @@
 	Map.prototype._clickedMarker = function(showReviews, popup, marker){
 		const self = this;
 		marker.addListener("click", function(){
-			console.log('test');
 			self.popups.forEach(function(p){
 				p.close();
 			});
