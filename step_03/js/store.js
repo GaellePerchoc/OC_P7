@@ -48,7 +48,6 @@
 	 */
 	Storage.prototype.save = function(data, callback, id){
 		let restaurant;
-		console.log(data)
 		if(id){
 			switch(typeof data){
 				case "object":
@@ -104,10 +103,7 @@
 	 * @param {object} - restaurant - The restaurant
 	 */
 	Storage.prototype._average = function(restaurant){
-		console.log(restaurant)
 		let avg = ((restaurant.avg * restaurant.user_total) + restaurant.ratings[0].stars) / (restaurant.user_total + 1);
-		console.log(restaurant)
-		console.log(avg)
 		this.db.get('restaurants')
 				.find({id: restaurant.id})
 				.assign({avg: avg})

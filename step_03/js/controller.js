@@ -233,7 +233,6 @@
 	Controller.prototype.addReview = function(id, review){
 		const self = this;
 		this.model.update(id, review, function(restaurant){
-			console.log(restaurant);
 			self.view.render("updateCard", restaurant);
 			
 			self.map.render("updatePopup",{
