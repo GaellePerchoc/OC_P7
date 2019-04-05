@@ -120,7 +120,7 @@ nav {
 #scroll {
 	display:none;
     position: fixed;
-    bottom: 15px;
+    bottom: 55px;
     right: 15px;
     cursor: pointer;
     transition: all 1s ease;
@@ -165,7 +165,7 @@ nav {
 }
 
 #map {
-	height:calc(100vh - 157px);
+	height:calc(100vh - 148px);
 	border:1px solid #f5f5f5;
 }
 
@@ -175,8 +175,9 @@ nav {
 }
 
 .list {
-	height:calc(100vh - 192px);
+	height:calc(100vh - 181.5px);
 	overflow: scroll;
+	margin-bottom:35.5px;
 }
 
 #list .buttons {
@@ -513,7 +514,7 @@ textarea {
 /*					COOKIE BANNER 				 */
 /*************************************************/
 #cookieBanner {
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	left: 0;
 	background: #4E4946;
@@ -525,6 +526,8 @@ textarea {
 	align-items: last baseline;
 	justify-content: space-between;
 	box-shadow: 0px -2px 10px #D6D5D5;
+	z-index: 1500;
+	text-align:justify;
 }
 
 #cookieBanner > div {
@@ -560,6 +563,11 @@ textarea {
 		grid-template:1fr / none;
 		grid-gap: 20px 0;
 	}
+
+	#cookieBanner {
+		flex-direction: column;
+	}
+
 }
 
 /* SMARTPHONE */
@@ -590,6 +598,6 @@ textarea {
 	}
 
 	.list {
-		height:calc(100vh - 122.5px);
+		height:calc(100vh - 130px);
 	}
 }
