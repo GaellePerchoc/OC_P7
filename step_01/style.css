@@ -161,7 +161,7 @@ nav {
 
 #content section {	
 	overflow: scroll;
-	height:calc(100vh - 157px);
+	height:calc(100vh - 148px);
 	border:1px solid #F5F5F5;
 }
 
