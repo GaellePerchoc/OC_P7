@@ -105,7 +105,7 @@
 			if(self.scrollCount == 1){
 				self._scrollTo(0);
 			} else if(self.scrollCount == 0){
-				self._scrollTo(self.$list.offsetTop);
+				self._scrollTo(self.$listContainer.offsetTop);
 			}
 		})
 	}
@@ -130,7 +130,7 @@
 		const self = this;
 		let header = document.querySelector('header');
 		document.addEventListener('scroll', function(){
-			if(window.scrollY + header.clientHeight < self.$list.offsetTop - 200){
+			if(window.scrollY + header.clientHeight < self.$listContainer.offsetTop - 200){
 				self.$scroll.classList.remove('up');
 				self.$scroll.classList.add('down');
 				self.scrollCount = 0;
